@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/image_input.dart';
+
 class AddPlacesScreen extends StatefulWidget {
   static const routeName ="/addPlacesScreen";
   @override
@@ -30,10 +32,13 @@ final TextEditingController  _titleController=TextEditingController();
                     decoration: InputDecoration(labelText: "title"),
                     controller: _titleController,
                   ),
+                  SizedBox(height: 10,),
+                  ImageInput(),
                 ],
               ),
             ),
           ),
+
           RaisedButton.icon(
             onPressed: () {},
             icon: Icon(Icons.add),
