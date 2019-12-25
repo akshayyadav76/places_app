@@ -3,8 +3,21 @@ import 'package:flutter/material.dart';
 class PlacesListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CircularProgressIndicator(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Places App"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.add,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }
