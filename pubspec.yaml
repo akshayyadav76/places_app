@@ -26,6 +26,7 @@ dependencies:
   provider: ^4.0.0
   image_picker: ^0.6.2+3
   path_provider: ^1.5.1
+  sqflite: ^1.2.0
 
 dev_dependencies:
   flutter_test:
