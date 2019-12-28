@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
 import '../providers/greate_places.dart';
+import '../widgets/pick_location.dart';
 
 
 class AddPlacesScreen extends StatefulWidget {
@@ -60,6 +61,7 @@ void _selcetedImage(File takenImage){
                   ),
                   SizedBox(height: 10,),
                   ImageInput(_selcetedImage),
+                  PickLocation(),
                 ],
               ),
             ),
