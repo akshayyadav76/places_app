@@ -9,6 +9,7 @@ import '../providers/greate_places.dart';
 
 class AddPlacesScreen extends StatefulWidget {
   static const routeName ="/addPlacesScreen";
+
   @override
   _AddPlacesScreenState createState() => _AddPlacesScreenState();
 }
@@ -29,8 +30,8 @@ void _selcetedImage(File takenImage){
   if(_titleController.text.isEmpty || _saveImage ==null){
     return;
   }
-  final addData=Provider.of<GreatPlaces>(context,listen: false);
-  addData.addDate(_titleController.text, _saveImage);
+  Provider.of<GreatPlaces>(context,listen: false)
+      .addPlace(_titleController.text, _saveImage);
   Navigator.of(context).pop();
   }
 

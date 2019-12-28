@@ -5,9 +5,11 @@ import '../screen/add_places_screen.dart';
 import '../providers/greate_places.dart';
 
 class PlacesListScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    final listData = Provider.of<GreatPlaces>(context);
+    print("befor future");
+    //final listData = Provider.of<GreatPlaces>(context,listen: true);
     return Scaffold(
       appBar: AppBar(
         title: Text("Places App"),
@@ -24,7 +26,7 @@ class PlacesListScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: Provider.of<GreatPlaces>(context, listen: false).fetchGetData(),
-        builder: (context, snapshot) => snapshot == null
+        builder: (context, snapshot) => snapshot.connectionState ==ConnectionState.waiting
             ? Center(
                 child: CircularProgressIndicator(),
               )

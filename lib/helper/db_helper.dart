@@ -14,13 +14,15 @@ class DbHlper {
 
   static Future<void> insert(String table, Map<String, Object> data) async {
    final db = await DbHlper.database();
-     db.insert(
+  db.insert(
       table,
       data,
-      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
+
+
   }
-    static Future<List<Map<String ,Object>>>getData(String table)async{
+    static Future<List<Map<String ,dynamic>>>getData(String table)async{
     final db=await DbHlper.database();
     return db.query(table);
     }

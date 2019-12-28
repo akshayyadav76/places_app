@@ -12,8 +12,8 @@ class GreatPlaces with ChangeNotifier {
     return [..._items];
   }
 
-  void addDate(String title, File takenImage) {
-    var newPlaces = Places(
+  void addPlace(String title, File takenImage) {
+    final newPlaces = Places(
       id: DateTime.now().toString(),
       title: title,
       image: takenImage,
@@ -21,23 +21,28 @@ class GreatPlaces with ChangeNotifier {
     );
     _items.add(newPlaces);
     notifyListeners();
+    print("adding ${_items.length}");
+
     DbHlper.insert('user_places', {
       'id': newPlaces.id,
       'title': newPlaces.title,
-      'image': newPlaces.image,
+      'image': newPlaces.image.path,
     });
   }
 
   Future<void> fetchGetData() async {
     final dataList = await DbHlper.getData("user_places");
+    print("datalist ${dataList.length}");
     _items = dataList
         .map((item) => Places(
               id: item['id'],
               title: item['title'],
               image: File(item['image']),
-              //location: null,
+              location: null,
             ))
         .toList();
+    print("fetching ${_items.length}");
+
     notifyListeners();
   }
 }
