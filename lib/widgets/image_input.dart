@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
+import 'package:firebase_storage/firebase_storage.dart';
 
 
 class ImageInput extends StatefulWidget {
@@ -20,10 +21,25 @@ class ImageInput extends StatefulWidget {
 class _ImageInputState extends State<ImageInput> {
   File _storeImage;
 
+  void upload()async{
+    final StorageReference ref= await FirebaseStorage.instance.ref().child("akass.jpg");
+    final StorageUploadTask uplod = ref.putFile(_storeImage);
+
+   var url = await (await uplod.onComplete).ref.getDownloadURL();
+   var urls=url.toString();
+
+    print("ssssssssss$url");
+    print("getttt$urls");
+    //final StorageReference image = FirebaseStorage.instance.ref().child("books.png")
+
+
+  }
+
+
   Future<void> _takeImage() async {
     final imageFile =
         await ImagePicker.pickImage(
-            source: ImageSource.camera,
+            source: ImageSource.gallery,
             maxWidth: 600,
         );
     if(imageFile == null){return;}
@@ -57,14 +73,22 @@ class _ImageInputState extends State<ImageInput> {
         SizedBox(
           height: 10,
         ),
-        Expanded(
-          child: FlatButton.icon(
-            onPressed: _takeImage,
-            icon: Icon(Icons.camera),
-            label: Text("Take Image"),
-            textColor: Theme.of(context).accentColor,
-          ),
+        Column(
+          children: <Widget>[
+            FlatButton.icon(
+                onPressed: _takeImage,
+                icon: Icon(Icons.camera),
+                label: Text("Take Image"),
+                textColor: Theme.of(context).accentColor,
+              ),
+
+            RaisedButton(
+              child: Text("upload"),
+              onPressed: upload,
+            ),
+          ],
         ),
+
       ],
     );
   }
